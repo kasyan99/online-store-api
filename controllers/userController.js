@@ -18,14 +18,11 @@ class UserController {
          return next(ApiError.badRequest('Wrong data'))
       }
 
-      // const candidate = await User.findOne({ where: { email } })
       const candidate = await User.find({ email })
       if (candidate.length > 0) {
          return next(ApiError.badRequest('user exists'))
       }
       const hashPassword = await bcrypt.hash(password, 5)
-      // const user = await User.create({ email, role, password: hashPassword })
-      // const basket = await Basket.create({ userId: user.id })
 
       const user = new User({
          email, role, password: hashPassword

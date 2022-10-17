@@ -1,5 +1,4 @@
 require('dotenv').config()
-// const sequelize = require('./db')
 const mongoose = require('mongoose')
 const express = require('express')
 const models = require('./models/models')
@@ -21,8 +20,6 @@ app.use(errorHandler)
 
 const start = async () => {
    try {
-      // await sequelize.authenticate()
-      // await sequelize.sync()
       mongoose.connect('mongodb+srv://admin:admin@cluster0.3thhb8k.mongodb.net/online-store').then(() => {
          app.listen(PORT, () => console.log(`Server has been started on http://localhost:${PORT}/`))
       })
