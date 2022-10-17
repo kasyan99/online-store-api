@@ -108,10 +108,8 @@ const DeviceList = observer(() => {
    }
 
    const deleteDevice = async (deviceId: number) => {
-      console.log('delete', deviceId)
       await deviceAPI.deleteOneDevice(deviceId)
       device.setTotalCount(device.totalCount - 1)
-      // console.log(device.devices.filter(d => d.id !== id))
    }
 
    if (isFetching) {
