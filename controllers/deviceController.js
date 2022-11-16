@@ -34,19 +34,25 @@ class DeviceController {
       limit = limit || 20
       let offset = page * limit - limit
       let devices
+
+      let totalCount = 0
+
       if (!brandId && !typeId) {
          devices = await Device.find({}).skip(offset).limit(limit)
+         totalCount = await Device.find({})
       }
       if (brandId && !typeId) {
          devices = await Device.find({ brandId }).skip(offset).limit(limit)
+         totalCount = await Device.find({ brandId })
       }
       if (!brandId && typeId) {
          devices = await Device.find({ typeId }).skip(offset).limit(limit)
+         totalCount = await Device.find({ typeId })
       }
       if (brandId && typeId) {
          devices = await Device.find({ brandId, typeId }).skip(offset).limit(limit)
+         totalCount = await Device.find({ brandId, typeId })
       }
-      const totalCount = await Device.find().count()
       return res.json({ devices, totalCount })
    }
 
